@@ -387,7 +387,9 @@
 
             input_values_separator: $inp.data("inputValuesSeparator"),
 
-            disable: $inp.data("disable")
+            disable: $inp.data("disable"),
+
+            precision: $inp.data("precision")
         };
         config_from_data.values = config_from_data.values && config_from_data.values.split(",");
 
@@ -1713,7 +1715,7 @@
                 result;
 
             if (string) {
-                number = +number.toFixed(string.length);
+                number = +number.toFixed(this.options.precision || string.length);
             } else {
                 number = number / this.options.step;
                 number = number * this.options.step;
@@ -1726,7 +1728,7 @@
             }
 
             if (string) {
-                result = +number.toFixed(string.length);
+                result = +number.toFixed(this.options.precision || string.length);
             } else {
                 result = this.toFixed(number);
             }
